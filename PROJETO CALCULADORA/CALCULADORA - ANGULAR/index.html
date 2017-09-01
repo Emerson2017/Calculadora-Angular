@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html ng-app="calculadora">
+	<head>
+
+		<link href="https://fonts.googleapis.com/css?family=Abril+Fatface" rel="stylesheet">
+		<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.5/angular.js"></script>
+		<script>
+			angular.module("calculadora", []);
+			angular.module("calculadora").controller("controllerCalc", function($scope){
+					$scope.val = "0";
+
+					$scope.click = function(num){
+
+						if($scope.val == "0"){
+							$scope.val = "";						
+						}
+
+						$scope.val += num;
+						
+						}
+
+					$scope.reset = function(){
+						$scope.val = "0";
+					}
+
+					$scope.calcule = function(){
+						$scope.val = eval($scope.val);
+					}						
+			});
+		</script>
+
+		<style>
+			#principal{
+				text-align: center; }
+
+			.visor{
+				height: 19px; }
+
+			.btn{
+				width: 55px;
+				height: 35px;
+				margin: 7px;
+				background-color: #C0C0C0;
+				border-radius: 5px; }
+			.btn:hover{
+				background-color: #DCDCDC;
+
+			}
+			.btn-black{
+				width: 55px;
+				background-color: #98D3EC;
+				height: 35px;
+				margin: 7px;
+				border-radius: 5px; }
+			.btn-black:hover{
+				background-color: #31A0CF;
+
+
+			}
+			.h1{
+				font-family: Abril Fatface;
+			}
+			.calc{
+				width: 55px;
+				height: 55px;
+			}
+
+			.superior{
+				display: flex;
+				flex-direction: row;
+				align-items: center;
+			}
+
+			.header-calc{
+				display: flex;
+				flex-direction: column;
+				align-items: center; 
+			}
+		
+		</style>
+
+			<title> CALCULADORA  </title>
+	</head>
+
+	<body>
+	<table border="3" align="center">
+	<tr> </tr>
+	<td>
+		<div ng-controller="controllerCalc" id="principal">
+				<header class="header-calc">
+					<div class="superior">
+						<h1 class="h1">CALCULADORA</h1>
+						<img src="calc.png" class ="calc"/>
+					</div>
+				</header>
+				<form>
+					<input type="text" id="visor" class="visor" size="40px" ng-model="val"> 
+					<br/>
+					<button class="btn" ng-click="click(7)"> 7 </button>
+					<button class="btn" ng-click="click(8)"> 8 </button>
+					<button class="btn" ng-click="click(9)"> 9 </button>
+					<button class="btn-black" ng-click="click('/')"> / </button>
+					<br/>
+					<button class="btn" ng-click="click(4)" > 4 </button>
+					<button class="btn" ng-click="click(5)" > 5 </button>
+					<button class="btn" ng-click="click(6)" > 6 </button>
+					<button class="btn-black" ng-click="click('*')" > * </button>
+					<br/>
+					<button class="btn" ng-click="click(1)" > 1 </button>
+					<button class="btn" ng-click="click(2)" > 2 </button>
+					<button class="btn" ng-click="click(3)" > 3 </button>
+					<button class="btn-black" ng-click="click('-')" > - </button>
+					<br/>
+					<button class="btn" ng-click="click(0)" > 0 </button>
+					<button class="btn-black" ng-click="calcule()"> = </button>
+					<button class="btn-black" ng-click="reset()"  > C </button>
+					<button class="btn-black" ng-click="click('+')" > + </button>
+			</form>
+			</table>
+		</div>
+	</body>
+</html>
